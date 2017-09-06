@@ -31,42 +31,7 @@
        <div class="container">
         <div class="jumbotron">
            <div class="row">
-            <div class="col-sm-4">
-             <div class="card">
-              <img class="card-img-top" style="height:300px;" src="http://caffaknitted.typepad.com/.a/6a00e54f8f86dc883401287636e5db970c-800wi">
-                <div class="card-block">
-                  <h4 class="card-title">Doggo</h4>
-                  <h6 class="card-subtitle text-muted">50.00€</h6>
-                  <div class="input-group mt-4 mb-3">
-                  </div>
-                  <p class="card-text">Le basset artésien normand est une race de chien de chasse d\'origine française. C\'est un chien courant de type basset, long et bas sur pattes, de couleur tricolore ou bicolore. Il est utilisé comme un chien de chasse pour le petit gibier et comme chien de compagnie.</p>
-                  <div class="text-center">
-                    <p class="card-text">Quantité : 1</p>
-                  </div>
-                  </div>
-                  </div>
-                <div class="card-footer text-center">
-                  <a href="#" class="card-link" data-toggle="modal" data-target="#Edit">Acheter</a>
-                </div>
-              </div>
-            <div class="col-sm-4">
-             <div class="card">
-              <img class="card-img-top" style="height:300px;" src="http://caffaknitted.typepad.com/.a/6a00e54f8f86dc883401287636e5db970c-800wi">
-                <div class="card-block">
-                  <h4 class="card-title">Doggo</h4>
-                  <h6 class="card-subtitle text-muted">50.00€</h6>
-                  <div class="input-group mt-4 mb-3">
-                  </div>
-                  <p class="card-text">Le basset artésien normand est une race de chien de chasse d\'origine française. C\'est un chien courant de type basset, long et bas sur pattes, de couleur tricolore ou bicolore. Il est utilisé comme un chien de chasse pour le petit gibier et comme chien de compagnie.</p>
-                  <div class="text-center">
-                    <p class="card-text">Quantité : 1</p>
-                  </div>
-                  </div>
-                  </div>
-                <div class="card-footer text-center">
-                  <a href="#" class="card-link" data-toggle="modal" data-target="#Edit">Acheter</a>
-                </div>
-              </div>
+    
             </div>
            </div>
           </div>
