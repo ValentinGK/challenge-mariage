@@ -1,0 +1,7 @@
+.custom-file-control::after {
+  content: "Image du cadeau";
+}
+
+.custom-file-control::before {
+  content: "Ouvrir...";
+}
