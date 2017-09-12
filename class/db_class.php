@@ -21,10 +21,17 @@
 				// FIN FONCTION INVITES //
 
 				// FONCTIONS CADEAUX //
-				$this->insertKdo = $db->prepare("INSERT INTO kdo (libellekdo, quantitekdo, imageKdo, descKdo)
+				$this->insertKdo = $db->prepare("INSERT INTO kdo (libellekdo, quantitekdo, imageKdo, desckdo)
 				VALUES (:libelleKdo, :quantiteKdo, :imageKdo, :descKdo)");
 
 				$this->selectAllKdo = $db->prepare("SELECT * from kdo");
+
+				$this->updateKdo = $db->prepare("UPDATE kdo SET libellekdo = :libellekdo, desckdo = :desckdo, quantitekdo = :quantitekdo WHERE idkdo = :idkdo");
+
+				$this->updateImageKdo = $db->prepare("UPDATE kdo SET imagekdo = :imageKdo WHERE idkdo = :idkdo");
+
+				$this->deleteKdo = $db->prepare("DELETE from kdo WHERE idkdo = :idkdo");
+
 				// FIN FONCTION CADEAUX //
 			}
 			catch(Exception $e){
@@ -59,13 +66,37 @@
 			}
 			$fichier = basename($imageKdo['name']);
 			move_uploaded_file($imageKdo['tmp_name'], __DIR__ . '/../assets/images/image-cadeaux/'.$fichier);
-			$this->insertKdo->execute(array(':libelleKdo'=>$libelleKdo, ':quantiteKdo' => $quantiteKdo, ':imageKdo' => $imageKdo['name'], ':descKdo' => $descKdo));
+			$this->insertKdo->execute(array(':libelleKdo'=> $libelleKdo, ':quantiteKdo' => $quantiteKdo, ':imageKdo' => $imageKdo['name'], ':descKdo' => $descKdo));
 		 	return $this->insertKdo->errorInfo();
 		}
 
 		public function selectAllKdo(){
 			$this->selectAllKdo->execute();
 			return $this->selectAllKdo->fetchAll();
+		}
+
+		public function updateKdo($libelleKdo,$descKdo,$quantiteKdo,$idkdo){
+			$this->updateKdo->execute(array(':libellekdo'=> $libelleKdo, ':desckdo' => $descKdo, ':quantitekdo' => $quantiteKdo, ':idkdo' => $idkdo));
+			return $this->updateKdo->errorInfo();
+		}
+		public function updateImageKdo($imageKdo,$idkdo){
+			$extensions = array('.png', '.jpg', '.jpeg');
+			$extension = strrchr($imageKdo['name'], '.');
+			if(!in_array($extension, $extensions)){
+				return $extension;
+			}
+			$fichier = basename($imageKdo['name']);
+			move_uploaded_file($imageKdo['tmp_name'], __DIR__ . '/../assets/images/image-cadeaux/'.$fichier);
+			$this->updateImageKdo->execute(array(':imageKdo' => $imageKdo['name'], ':idkdo' => $idkdo));
+			return $this->updateImageKdo->errorInfo();
+		}
+		public function deleteKdo($idkdo){
+			$this->deleteKdo->execute(array(':idkdo' => $idkdo));
+			return $this->deleteKdo->errorInfo();
+		}
+		public function buyKdo($idkdo){
+			$this->buyKdo->execute(array('idkdo' => $idkdo));
+			return $this->buyKdo->errorInfo();
 		}
 		// FIN FONCTION CADEAU //
 
@@ -80,7 +111,7 @@
 					$_SESSION['admin'] = $proof['admin'];
 					return $_SESSION;
 				}else{
-					return $proof;
+					return false;
 				}
 			}else{
 				return false;

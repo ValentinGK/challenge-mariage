@@ -132,7 +132,7 @@
                 </form>
               </div>
               <div class="modal-footer">
-                <button class="btn btn-lg btn-primary btn-block" onclick="addKdo()" type="submit">Se connecter</button>
+                <button class="btn btn-lg btn-primary btn-block" onclick="addKdo()" type="submit">Ajouter le cadeau</button>
               </div>
             </div>
           </div>
@@ -210,5 +210,50 @@
       </body>
       </html>
     ";
+  }
+  function kdo_card($kdo){
+  if($kdo['quantitekdo'] > 0 || $_SESSION && $_SESSION['admin'] == 1){
+    echo '
+      <div class="col-sm-4 mt-4">
+              <div class="card">
+                  <img class="card-img-top" style="height:300px;" src="/assets/images/image-cadeaux/'.$kdo['imageKdo'].'">
+                  <div class="card-block">
+                      <input id="idkdo" type="hidden" value="'.$kdo['idkdo'].'"/>
+                      <h4 class="card-title">'.$kdo['libellekdo'].'</h4>
+                      <p class="card-text">
+                        '.$kdo['desckdo'].'
+                      </p>
+                      <div class="text-center">
+                        <p class="card-text">Quantité : <span id="quantite">'.$kdo['quantitekdo'].'</span></p>
+                      </div>
+                  </div>
+              </div>
+    ';
+              if($_SESSION){
+                echo '
+                <div class="card-footer text-center">
+                ';
+                if ($_SESSION['admin'] == 1){
+                  echo '
+                    <a href="#" onclick="editKdo(this)" class="card-link">Modifier</a>
+                  ';
+                }else{
+                  echo'
+                    <a href="#" onclick="buyKdo('.$kdo['idkdo'].')" class="card-link">Acheter</a> 
+                  ';
+                }
+                echo' </div>';
+              }
+              echo'
+                </div>
+              ';
+    }
+  }
+  function reloadKdo(){
+    global $DB;
+    $kdos = $DB->selectAllKdo();
+    foreach ($kdos as $kdo) {
+      echo kdo_card($kdo);
+    }
   }
 ?>
